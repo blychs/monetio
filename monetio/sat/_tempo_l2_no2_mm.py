@@ -225,17 +225,18 @@ def open_dataset(fnames, variable_dict, debug=False):
     else:  # Assume sequence
         variable_dict = {varname: {} for varname in variable_dict}
 
-    for subpath in fnames.split("/"):
-        if "$" in subpath:
-            envvar = subpath.replace("$", "")
-            envval = os.getenv(envvar)
-            if envval is None:
-                raise Exception("Environment variable not defined: " + subpath)
-            else:
-                fnames = fnames.replace(subpath, envval)
+    if not isinstance(fnames, list):
+        for subpath in fnames.split("/"):
+            if "$" in subpath:
+                envvar = subpath.replace("$", "")
+                envval = os.getenv(envvar)
+                if envval is None:
+                    raise Exception("Environment variable not defined: " + subpath)
+                else:
+                    fnames = fnames.replace(subpath, envval)
 
+        files = sorted(glob(fnames))
     print(fnames)
-    files = sorted(glob(fnames))
 
     granules = OrderedDict()
 
