@@ -1,3 +1,8 @@
+"""
+TEMPO downloader
+Created by NSF - National Center for Atmospheric Research, in 
+the Atmospheric Chemistry Observations and Modeling Laboratory
+"""
 import earthaccess
 
 #TODO: merge comment style to monetio and remove
