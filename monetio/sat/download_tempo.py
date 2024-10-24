@@ -3,7 +3,12 @@ TEMPO downloader
 Created by NSF - National Center for Atmospheric Research, in 
 the Atmospheric Chemistry Observations and Modeling Laboratory
 """
-import earthaccess
+try:
+    import earthaccess
+except ImportError:
+    raise ImportError("The earthaccess module is required for accessing TEMPO data. "
+           + "Download and install it with pip ( pip install earthaccess ) or "
+           + "conda ( conda install -c conda-forge earthaccess )")
 
 #TODO: merge comment style to monetio and remove
 # type hinting to merge coding style
